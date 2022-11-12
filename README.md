@@ -4,3 +4,4 @@ This solution supposes that all the letters in the K types of replacements are i
 As a result, my solution passes all the tests in "WoringTests.txt" file and fails the test in "NonWorkingTest.txt" file.
 
 
+Edit : I solved the problem and my solution passes all tests.
