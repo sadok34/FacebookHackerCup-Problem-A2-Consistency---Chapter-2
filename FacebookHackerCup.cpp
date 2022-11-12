@@ -54,13 +54,16 @@ void distCharsInString(string s,vector<int> &caracters)
 int main() {
 
 
-    freopen("a.txt", "r", stdin);
+    freopen("WorkingTests.txt", "r", stdin);
     int t;
     string s;
+
     int k;
     cin >> t;
+    int T=t;
     while(t--)
     {
+        string nodes = "";
         vector<int>graph[N];
         memset (vis,false,sizeof(vis));
         //memset (dist,INF,sizeof(dist));
@@ -76,23 +79,29 @@ int main() {
             char Bi;
             cin>>Ai>>Bi;
             graph[(int)Ai - 65].pb((int) Bi -65 );
+            nodes = nodes + (Ai) ;
+            nodes = nodes + (Bi) ;
         }
+        nodes = nodes + s;
         vector<int> caracters;
-        distCharsInString(s,caracters);
+        distCharsInString(nodes,caracters);
         int res=INF;
         for (int i=0;i<caracters.size();i++)
         {
             int ith=caracters[i];
             int cost = 0 ;
+            //cout << "im in i";
             for (int j=0;j<caracters.size();j++)
             {
+
                 if (i!=j)
                 {
+                    //cout << "im in j";
                     int jth = caracters[j];
                     augmentedBFS(jth,graph);
                     cost += dist[ith]*count(s.begin(),s.end(),(char)(jth+65));
                     //cout << " ith element "<< ith << " jth element  "<<jth << "    cost   "<< cost << endl;
-                    cout <<"dist de :"<<jth<<" à "<< ith<<" est : "<<  dist[ith]<<endl;
+                    //cout <<"dist de :"<<jth<<" Ã  "<< ith<<" est : "<<  dist[ith]<<endl;
                     memset (vis,false,sizeof(vis));
                     //memset (dist,INF,sizeof(dist));
                     for (int i=0;i<N;i++)
@@ -105,11 +114,11 @@ int main() {
             res = min(res,cost);
 
         }
-        cout << "res est : ";
+
         if (res >= INF)
-            cout << -1<<endl;
+            cout << "Case #"<< T-t <<":  "<< -1<<endl;
         else
-            cout << res <<endl;
+            cout << "Case #"<< T-t <<":  "<< res <<endl;
 
 
 
